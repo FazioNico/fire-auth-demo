@@ -1,5 +1,22 @@
 <div>
+  <div [ngSwitch]="true">
 
-  <button (click)="login()">login</button>
-  <button (clcik)="logout()">logout</button>
+    <section *ngSwitchCase="!!(auth?.user|async)?.uid">
+      <!-- user connected -->
+      <pre>
+        {{(auth?.user|async)|json}}
+      </pre>      
+      <button (click)="logout()">logout</button>
+    </section>
+
+    <section *ngSwitchCase="!(auth?.user|async)?.uid">
+      <!-- user not connected -->
+      <button (click)="login()">login</button>
+    </section> 
+       
+  </div>
+
+
+  
+  
 </div>
